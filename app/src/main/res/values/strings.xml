@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AndroidCameraSaveLoadCropImage</string>
+    <string name="can_not_crop">can not crop</string>
+    <string name="fail_to_crop">fail to crop</string>
+</resources>
