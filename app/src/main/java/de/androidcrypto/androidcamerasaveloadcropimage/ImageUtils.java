@@ -21,8 +21,10 @@ public class ImageUtils {
 
     public static Bitmap handleSamplingAndRotationBitmap(Context context, Uri selectedImage)
             throws IOException {
-        int MAX_HEIGHT = 1024;
-        int MAX_WIDTH = 1024;
+        // int MAX_HEIGHT = 1024; // org values
+        // int MAX_WIDTH = 1024; // org values
+        int MAX_HEIGHT = 4096;
+        int MAX_WIDTH = 4096;
 
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;

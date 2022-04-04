@@ -20,6 +20,7 @@ package de.androidcrypto.androidcamerasaveloadcropimage;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -42,6 +43,7 @@ import androidx.core.content.ContextCompat;
 import com.naver.android.helloyako.imagecrop.model.ViewState;
 import com.naver.android.helloyako.imagecrop.view.ImageCropView;
 
+import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,6 +57,7 @@ public class CropActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<String> mCropPhoto;
     Uri imageUri;
+    Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +68,7 @@ public class CropActivity extends AppCompatActivity {
 
         Intent i = getIntent();
         Uri uri = i.getData();
-
+        context = getApplicationContext();
         init();
 
 //        DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -267,12 +270,22 @@ public class CropActivity extends AppCompatActivity {
                             System.out.println("result is NULL");
                             return;
                         }
+
                         //ImageView imageView;
                         ImageView imageView = findViewById(R.id.ivInvisible);
                         imageView.setImageURI(result);
                         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
                         Bitmap bitmap = drawable.getBitmap();
                         imageCropView.setImageBitmap(bitmap);
+                        /*
+                        Bitmap bitmap = null;
+                        try {
+                            bitmap = ImageUtils.handleSamplingAndRotationBitmap(context, result);
+                            imageCropView.setImageBitmap(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            return;
+                        }*/
                         // clearing
                         drawable = null;
                         bitmap = null;
